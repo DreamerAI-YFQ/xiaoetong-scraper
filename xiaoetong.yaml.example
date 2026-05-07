@@ -1,0 +1,41 @@
+# 小鹅通圈子内容抓取配置
+# 位置：Obsidian Vault 根目录，与 sources.yaml 同级
+# 安装时复制此文件为 xiaoetong.yaml 并填入实际配置
+
+circles:
+  - name: "你的圈子名称"
+    community_id: "c_xxx_xxx_xxx"       # 从圈子 URL 提取
+    app_id: "appxxxx"                    # 小鹅通店铺 app_id
+    enabled: true
+  # 后续添加更多圈子：
+  # - name: "另一个圈子"
+  #   community_id: "c_yyy_yyy"
+  #   app_id: "appxxxx"
+  #   enabled: true
+
+# 输出设置（与 Source Normalizer 对齐）
+output:
+  staging_path: "Cubox/Staging/"        # Staging 目录（相对 Vault 根目录）
+  attachments_subdir: "attachments/"     # 图片附件子目录
+  video_dir: "videos/"                   # 视频文件子目录
+
+# 登录设置
+login:
+  cookie_file: ".xiaoetong-cookies.json" # Cookie 持久化文件（存 Vault 根目录）
+  headless: false                        # 首次登录必须 false（需扫码/验证码）
+  proxy: ""                              # 代理地址；留空=自动检测环境变量；无环境变量=直连
+
+# 抓取设置
+scrape:
+  include_comments: true                 # 抓取评论
+  include_likes: true                    # 抓取点赞
+  download_videos: true                  # 下载视频
+  download_audio: true                   # 下载音频
+  download_images: true                  # 下载图片
+  max_posts: 0                           # 0=全部，可设限制用于测试
+  delay_range: [1.0, 3.0]               # 随机延迟秒数范围（防反爬）
+
+# 增量设置
+incremental:
+  state_file: ".xiaoetong-state.json"    # 状态文件（存 Vault 根目录）
+  track_by: "feeds_id"                   # 增量追踪字段
