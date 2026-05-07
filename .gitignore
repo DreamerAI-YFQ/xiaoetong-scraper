@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+.xiaoetong-cookies.json
+.xiaoetong-state.json
+.xiaoetong-debug/
+*.egg-info/
+dist/
+build/
+.env
+.venv/
